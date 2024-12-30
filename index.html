@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Scraper API Documentation</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    h1, h2, h4, h5 {
+      color: #bb86fc;
+    }
+    code {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1em;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    footer {
+      border-top: 1px solid #333;
+      padding-top: 1em;
+      margin-top: 2em;
+    }
+    a {
+      color: #bb86fc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">YouTube Scraper API Documentation</h1>
+    <p class="text-muted text-center">Simple API to search and download YouTube videos</p>
+
+    <div class="mt-4">
+      <h2>Endpoints</h2>
+
+      <!-- Search Endpoint -->
+      <div class="mt-3">
+        <h4>1. Search Videos</h4>
+        <p><strong>GET</strong> <code>/search</code></p>
+        <p>Search for YouTube videos based on a query.</p>
+        <h5>Query Parameters:</h5>
+        <ul>
+          <li><code>query</code> (required): The search term. Example: <code>?query=music</code></li>
+        </ul>
+        <h5>Example Request:</h5>
+        <pre><code>GET /search?query=music</code></pre>
+        <h5>Response:</h5>
+        <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "title": "Example Video",
+      "url": "https://www.youtube.com/watch?v=ID",
+      "videoId": "ID",
+      "duration": "3:45",
+      "views": "1M views",
+      "uploaded": "1 day ago",
+      "thumbnail": "https://i.ytimg.com/vi/ID/hqdefault.jpg",
+      "channel": {
+        "name": "Channel Name",
+        "url": "https://www.youtube.com/channel/ID"
+      }
+    }
+  ]
+}</code></pre>
+      </div>
+
+      <!-- Download Endpoint -->
+      <div class="mt-3">
+        <h4>2. Download Video/Audio</h4>
+        <p><strong>GET</strong> <code>/download</code></p>
+        <p>Download YouTube videos or audio files.</p>
+        <h5>Query Parameters:</h5>
+        <ul>
+          <li><code>url</code> (required): The YouTube video URL. Example: <code>?url=https://youtube.com/watch?v=ID</code></li>
+          <li><code>type</code> (optional): The type of content to download (<code>audio</code> or <code>video</code>). Default: <code>video</code></li>
+          <li><code>quality</code> (optional): The quality of the video (<code>144p</code>, <code>240p</code>, <code>360p</code>, etc.). Default: <code>720p</code></li>
+        </ul>
+        <h5>Example Request:</h5>
+        <pre><code>GET /download?url=https://youtube.com/watch?v=ID&type=video&quality=720p</code></pre>
+        <h5>Response:</h5>
+        <pre><code>{
+  "success": true,
+  "data": {
+    "title": "Example Video",
+    "duration": "3:45",
+    "thumbnail": "https://i.ytimg.com/vi/ID/hqdefault.jpg",
+    "downloadUrl": "https://download-link",
+    "quality": "720p",
+    "type": "video"
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <footer class="mt-5">
+      <p class="text-center text-muted">© 2024 YouTube Scraper API</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
